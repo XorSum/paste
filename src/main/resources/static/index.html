@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <p> 查看留言: 输入id，点击search </p>
+    <form action="/get" method="get">
+        <span>id</span>
+        <input type="text" name="aid">
+        <br>
+        <input type="submit" value="search">
+    </form>
+</div>
+<br>
+<br>
+<br>
+<div>
+<p>发表留言: 输入名字，内容，点击add </p>
+<form action="/add" method="post">
+    <span>writer</span>
+    <input type="text" name="writer">
+    <br>
+    <span>content</span>
+    <textarea rows="30" cols="70" name="content"> </textarea>
+    <br>
+    <input type="submit" value="add">
+</form>
+</div>
+
+</body>
+</html>
