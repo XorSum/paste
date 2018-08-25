@@ -1,34 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paste</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-<div>
-    <p> 查看留言: 输入id，点击search </p>
-    <form action="/get" method="get">
-        <span>id</span>
-        <input type="text" name="aid">
-        <br>
-        <input type="submit" value="search">
-    </form>
-</div>
-<br>
-<br>
-<br>
-<div>
-<p>发表留言: 输入名字，内容，点击add </p>
-<form action="/add" method="post">
-    <span>writer</span>
-    <input type="text" name="writer">
-    <br>
-    <span>content</span>
-    <textarea rows="30" cols="70" name="content"> </textarea>
-    <br>
-    <input type="submit" value="add">
-</form>
-</div>
+
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+          <a class="navbar-brand" href="./index.html"> PASTE </a>
+        </div>
+        <div id ="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="./index.html">搜索</a>
+            </li>
+            <li class="hide">
+              <a href="./cat.html">查看</a>
+            </li>
+            <li>
+              <a href="./submit.html">发表</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <p class="lead" id ="lead" > </p>
+    </div>
+
+    <input type="text" class="form-control" id="codeId" placeholder="ID" />
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="cat()">Search</button>
+
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+
+      function cat() {
+        var codeId = document.getElementById("codeId").value;
+        window.location = "/cat.html?codeId=" + codeId;
+
+      }
+
+    </script>
+
+
+
+
+  </div>
+
+
+
+
 
 </body>
+
 </html>

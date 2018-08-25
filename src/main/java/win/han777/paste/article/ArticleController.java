@@ -1,24 +1,26 @@
-package win.han777.paste;
+package win.han777.paste.article;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import win.han777.paste.article.ArticleService;
+import win.han777.paste.util.Result;
 
 @RestController
 @RequestMapping("/")
 @CrossOrigin("*")
-public class ArtivleController {
+public class ArticleController {
 
     @Autowired
     ArticleService articleService;
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String add(String writer,String content){
-        return articleService.addArticle(writer,content);
+    public Result add(String content,String mode){
+        System.out.println(content+" "+mode);
+        return articleService.addArticle(content,mode);
     }
 
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public String get(int aid){
+    public Result get(int aid){
         return articleService.getArticle(aid);
     }
 

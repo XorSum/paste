@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Paste</title>
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/codemirror/5.38.0/codemirror.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/codemirror.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./index.html"> PASTE </a>
+                </div>
+                <div id ="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="./index.html">搜索</a>
+                        </li>
+                        <li class="active">
+                            <a href="./cat.html">查看</a>
+                        </li>
+                        <li>
+                            <a href="./submit.html">发表</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-header">
+            <p class="lead" id ="lead" > </p>
+        </div>
+        <div class="row">
+            <textarea id="code"></textarea>
+        </div>
+
+
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.bootcss.com/codemirror/5.38.0/codemirror.js"></script>
+        <script>
+
+            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                lineNumbers: true,
+                mode: "text/html",
+                matchBrackets: true
+            });
+            editor.setSize('auto', 'auto');
+            function getQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+
+            var codeId = getQueryString("codeId");
+            if (codeId == null) codeId = 1;
+            console.log(codeId);
+            var rps = $.ajax({ url: "/get?aid=" + codeId, async: true,
+                success:function(res){
+                    console.log(res);
+                    if (res.code=='1'){
+                        editor.getDoc().setValue(res.data.content);
+                        document.getElementById("lead").innerHTML =  window.location.href;
+                    }else if (res.code=='0'){
+                        editor.getDoc().setValue(res.message);
+                    }else {
+                        editor.getDoc().setValue("发生了一些无法预知的错误");
+                    }
+                },
+                error: function(){
+                    editor.getDoc().setValue("发生了一些无法预知的错误");
+                }
+                });
+                
+        </script>
+    </div>
+</body>
+
+</html>
