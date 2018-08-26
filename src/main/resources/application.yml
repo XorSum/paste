@@ -5,8 +5,6 @@ spring:
     password:
     test-while-idle: true
     validation-query: SELECT 1
-  thymeleaf:
-    mode: LEGACYHTML5
   jpa:
     show-sql: true
     hibernate:
@@ -15,6 +13,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50mb
+      max-request-size: 50mb
 server:
   port: 8087
 
