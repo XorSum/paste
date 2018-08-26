@@ -9,7 +9,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/codemirror/5.38.0/codemirror.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/codemirror.css">
-
+    <link href="https://cdn.bootcss.com/codemirror/5.38.0/theme/material.css" rel="stylesheet">
 </head>
 
 <body>
@@ -54,12 +54,15 @@
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdn.bootcss.com/codemirror/5.38.0/codemirror.js"></script>
-
+        <script src="https://cdn.bootcss.com/codemirror/5.38.0/mode/clike/clike.js"></script>
+        <script src="https://cdn.bootcss.com/codemirror/5.38.0/addon/edit/matchbrackets.js"></script>
         <script>
 
             var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
                 height: "350px",
                 lineNumbers: true,
+                mode: "text/x-c++src",
+                theme :"material",
                 matchBrackets: true
             });
 
